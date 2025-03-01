@@ -1,0 +1,30 @@
+/* Стилізація форми пошуку */
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-form input[type='text'] {
+  padding: 10px 15px;
+  border: 2px solid #3498db;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 16px;
+  width: 300px;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+  background-color: #2874a6;
+}

@@ -1,0 +1,7 @@
+/* Адаптивність для мобільних пристроїв */
+@media screen and (max-width: 768px) {
+  .search-form input[type='text'] {
+    width: 100%;
+    max-width: 250px;
+  }
+}
