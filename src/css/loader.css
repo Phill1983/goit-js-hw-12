@@ -1,23 +1,44 @@
-/* Прелоадер (індикатор завантаження) */
-.loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
+#loader {
+  display: none;
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  color: #666;
+  margin: 15px auto;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.loader-top {
+  position: static;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.loader-bottom {
+  position: static;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#load-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#load-more:hover {
+  background-color: #0056b3;
+}
+
+.iziToast {
+  background-color: #ef4040 !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  border-radius: 8px !important;
 }

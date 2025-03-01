@@ -8,16 +8,27 @@ import svgIcon from '../img/Group.svg';
 
 let lightbox = null;
 
+/**
+ * Очищує галерею перед новим пошуком.
+ */
 export function clearGallery() {
     const galleryContainer = document.querySelector('.gallery');
     galleryContainer.innerHTML = '';
 }
 
-export function renderGallery(images) {
+/**
+ Рендерить галерею зображень.
+@param {Array} images - Масив об'єктів із зображеннями.
+@param {boolean} append - Якщо true, додає зображення до галереї без очищення.
+ */
+export function renderGallery(images, append = false) {
   const galleryContainer = document.querySelector('.gallery');
   const searchInput = document.querySelector('input[type="text"]');
 
-  galleryContainer.innerHTML = '';
+
+  if (!append) {
+    galleryContainer.innerHTML = '';
+  }
 
 
   const markup = images
@@ -48,27 +59,30 @@ export function renderGallery(images) {
     })
     .join('');
 
-  galleryContainer.innerHTML = markup;
+  galleryContainer.insertAdjacentHTML('beforeend', markup);
 
 
-  searchInput.value = '';
+  if (!append) {
+    searchInput.value = '';
+  }
 
 
   if (lightbox) {
-    lightbox.destroy(); 
+    lightbox.refresh(); 
+  } else {
+    lightbox = new SimpleLightbox('.gallery a', {
+      captionsData: 'alt',
+      captionDelay: 250,
+      scrollZoom: false,
+    });
   }
-
-  lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-    scrollZoom: false,
-  });
-
-  lightbox.refresh(); // Оновлюємо галерею
 }
 
+/**
+ Відображає помилку через iziToast.
+ @param {string} message - Текст повідомлення про помилку.
+ */
 export function showError(message) {
-
     iziToast.error({
         message: message,
         position: 'topRight',
