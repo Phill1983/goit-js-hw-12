@@ -77,7 +77,7 @@ loadMoreBtn.addEventListener('click', async () => {
     const data = await fetchImages(query, currentPage);
     hideLoader();
 
-    if (!data.hits?.length) {
+    if (!data.hits?.length) { //  Якщо зображення закінчилися
       toggleLoadMore(false);
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
@@ -95,13 +95,26 @@ loadMoreBtn.addEventListener('click', async () => {
     lightbox.refresh();
     smoothScroll();
 
-    toggleLoadMore(currentPage * 40 < totalHits);
+    if (currentPage * 40 >= totalHits) { //  Перевірка, чи є ще сторінки
+      toggleLoadMore(false);
+      iziToast.info({
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+        backgroundColor: '#FFA500',
+        messageColor: 'white',
+        timeout: 5000,
+        progressBar: true,
+        transitionIn: 'fadeIn',
+      });
+    }
+
   } catch (error) {
     hideLoader();
     console.error('Error loading images:', error);
     showError('Something went wrong. Please try again later!');
   }
 });
+
 
 //  Функція плавного скролу після підвантаження
 function smoothScroll() {
